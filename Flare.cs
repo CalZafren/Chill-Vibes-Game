@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Flare : MonoBehaviour
 {
 
+    public SceneTransition sceneTransition;
     private Text promptText;
     private Transform player;
     private Animator anim;
@@ -55,5 +56,12 @@ public class Flare : MonoBehaviour
         HidePrompt();
         flareActivated = true;
         anim.SetTrigger("activate");
+        StartCoroutine(EndGame());
+    }
+
+    IEnumerator EndGame(){
+        yield return new WaitForSeconds(5f);
+        sceneTransition.ChangeScene();
+
     }
 }
